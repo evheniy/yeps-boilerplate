@@ -11,5 +11,6 @@
     "showLevel": true,
     "maxsize": 10000000,
     "maxFiles": 5
-  }
+  },
+  "ttl": 86400
 }

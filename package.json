@@ -45,11 +45,12 @@
     "index.js"
   ],
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "yeps": "*",
     "yeps-error": "*",
     "yeps-logger": "*",
-    "yeps-router": "*",
-    "yeps-redis": "*"
+    "yeps-redis": "*",
+    "yeps-router": "*"
   },
   "devDependencies": {
     "chai": "^3.5.0",

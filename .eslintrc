@@ -13,5 +13,8 @@
     "indent": ["error", 4, {"SwitchCase": 1}],
     "quotes": ["error", "single"],
     "no-unused-expressions": 0
+  },
+  "globals": {
+    "fetch": false
   }
 }
