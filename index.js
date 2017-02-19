@@ -33,28 +33,31 @@ router.get('/users').then(async ctx => {
         { id: 3, name: 'Family' },
     ]));
 }).get('/').then(async ctx => {
-    let response = {};
 
-    let data = await ctx.redis.get(ctx.req.url);
+    let response = await ctx.redis.get(ctx.req.url);
 
-    if (data) {
-        response = JSON.parse(data);
-    } else {
+    if (!response) {
+        const res = {};
+
         const query = parser.parse(ctx.req.url, true).query;
 
-        data = await Promise.all(
-            Object.keys(query).map(key => fetch(`http://${ctx.req.headers.host}/${query[key]}`).then(res => res.json()))
+        const data = await Promise.all(
+            Object.keys(query).map(
+                key => fetch(`http://${ctx.req.headers.host}/${query[key]}`).then(r => r.json())
+            )
         );
 
         Object.keys(query).forEach((key, index) => {
-            response[key] = data[index];
+            res[key] = data[index];
         });
 
-        await ctx.redis.set(ctx.req.url, JSON.stringify(response), 'ex', config.ttl);
+        response = JSON.stringify(res);
+
+        await ctx.redis.set(ctx.req.url, response, 'ex', config.ttl);
     }
 
     ctx.res.writeHead(200, {'Content-Type': 'application/json'});
-    ctx.res.end(JSON.stringify(response));
+    ctx.res.end(response);
 
 });
 
