@@ -1,0 +1,15 @@
+{
+  "redis": {
+    "host": "127.0.0.1",
+    "port": 6379
+  },
+  "logger": {
+    "filename": "./logs/app.error.log",
+    "json": true,
+    "timestamp": true,
+    "logstash": true,
+    "showLevel": true,
+    "maxsize": 10000000,
+    "maxFiles": 5
+  }
+}

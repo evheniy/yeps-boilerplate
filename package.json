@@ -1,0 +1,71 @@
+{
+  "name": "yeps-boilerplate",
+  "version": "0.0.1",
+  "description": "YEPS boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --harmony ./bin/www",
+    "lint": "./node_modules/.bin/npm-run-all --parallel lint:**",
+    "lint:js": "./node_modules/.bin/eslint index.js tests",
+    "test": "./node_modules/.bin/npm-run-all --parallel test:**",
+    "test:security": "./node_modules/.bin/nsp check",
+    "test:code": "node --harmony ./node_modules/mocha/bin/_mocha tests --recursive",
+    "test:coverage": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- tests --recursive",
+    "report": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "clear": "./node_modules/.bin/rimraf coverage",
+    "precommit": "npm run lint && npm test",
+    "prepush": "npm run lint && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evheniy/yeps-boilerplate.git"
+  },
+  "keywords": [
+    "promise",
+    "http",
+    "server",
+    "rest",
+    "fast",
+    "async",
+    "await",
+    "https",
+    "ssl",
+    "easy",
+    "redis",
+    "logger",
+    "router"
+  ],
+  "author": "Evheniy Bystrov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/evheniy/yeps-boilerplate/issues"
+  },
+  "homepage": "https://github.com/evheniy/yeps-boilerplate#readme",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "yeps": "*",
+    "yeps-error": "*",
+    "yeps-logger": "*",
+    "yeps-router": "*",
+    "yeps-redis": "*"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "coveralls": "^2.11.16",
+    "debug": "^2.6.1",
+    "eslint": "^3.15.0",
+    "eslint-config-eslint": "^3.0.0",
+    "husky": "^0.13.1",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.2.0",
+    "npm-run-all": "^4.0.1",
+    "nsp": "^2.6.2",
+    "promise-pause-timeout": "0.0.1",
+    "rimraf": "^2.5.4",
+    "sinon": "^1.17.7"
+  }
+}
