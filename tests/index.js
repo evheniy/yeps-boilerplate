@@ -122,7 +122,7 @@ describe('YEPS app boilerplate test', () => {
         expect(isTestFinished).is.true;
     });
 
-    it('should test aggregator from redis', async () => {
+    it('should test aggregator from api', async () => {
         let isTestFinished = false;
 
         await redis.del('/?users=users&categories=categories');
@@ -197,5 +197,23 @@ describe('YEPS app boilerplate test', () => {
         expect(data.categories[0].name).to.be.equal('Friends');
 
         await redis.del('/?users=users&categories=categories');
+    });
+
+    it('should test aggregator with error', async () => {
+        let isTestFinished = false;
+
+        await chai.request(server)
+            .get('/')
+            .query({
+                users: 'users',
+                category: 'category'
+            })
+            .send()
+            .catch(err => {
+                expect(err).to.have.status(500);
+                isTestFinished = true;
+            });
+
+        expect(isTestFinished).is.true;
     });
 });
