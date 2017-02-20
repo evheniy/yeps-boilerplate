@@ -45,9 +45,16 @@
     "index.js"
   ],
   "dependencies": {
+    "body-parser": "^1.16.1",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "helmet": "^3.4.0",
     "isomorphic-fetch": "^2.2.1",
+    "serve-favicon": "^2.4.0",
+    "serve-static": "^1.11.2",
     "yeps": "*",
     "yeps-error": "*",
+    "yeps-express-wrapper": "*",
     "yeps-logger": "*",
     "yeps-redis": "*",
     "yeps-router": "*"

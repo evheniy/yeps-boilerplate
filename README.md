@@ -27,6 +27,13 @@
 * [config](https://github.com/lorenwest/node-config) - node.js config
 * [winston](https://github.com/winstonjs/winston) - logger
 * [ioredis](https://github.com/luin/ioredis) - promise based redis client
+* [body-parser](https://github.com/expressjs/body-parser) - Node.js body parsing middleware
+* [serve-favicon](https://github.com/expressjs/serve-favicon) - favicon serving middleware
+* [serve-static](https://github.com/expressjs/serve-static) - Serve static files
+* [cors](https://www.npmjs.com/package/cors) - middleware for dynamically or statically enabling CORS
+* [helmet](https://github.com/helmetjs/helmet) - Helmet helps you secure your apps by setting various HTTP headers
+* [compression](https://github.com/expressjs/compression) - Node.js compression middleware
+
 
 ## How to install
 

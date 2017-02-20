@@ -1,3 +1,4 @@
+const path = require('path');
 const App = require('yeps');
 const Router = require('yeps-router');
 const redis = require('yeps-redis');
@@ -6,18 +7,32 @@ const logger = require('yeps-logger');
 const parser = require('url');
 const config = require('config');
 require('isomorphic-fetch');
+const wrapper = require('yeps-express-wrapper');
+const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
+const serveStatic = require('serve-static');
+const compression = require('compression');
+const helmet = require('helmet');
+const cors = require('cors');
 
 const app = module.exports = new App();
 const router = new Router();
 
 app.all([
+    wrapper(favicon(path.join(__dirname, 'public', 'favicon.ico'))),
+    wrapper(serveStatic(path.join(__dirname, 'public', 'files'))),
+]).all([
     redis(),
     error(),
     logger(),
+    wrapper(bodyParser.json()),
+    wrapper(compression()),
+    wrapper(helmet()),
+    wrapper(cors()),
 ]);
 
 router.get('/users').then(async ctx => {
-    ctx.res.writeHead(200, {'Content-Type': 'application/json'});
+    ctx.res.setHeader('Content-Type', 'application/json');
     ctx.res.end(JSON.stringify([
         { id: 1, name: 'Tom' },
         { id: 2, name: 'Nick' },
@@ -26,7 +41,7 @@ router.get('/users').then(async ctx => {
         { id: 5, name: 'Ev' },
     ]));
 }).get('/categories').then(async ctx => {
-    ctx.res.writeHead(200, {'Content-Type': 'application/json'});
+    ctx.res.setHeader('Content-Type', 'application/json');
     ctx.res.end(JSON.stringify([
         { id: 1, name: 'Friends' },
         { id: 2, name: 'Office' },
@@ -56,7 +71,7 @@ router.get('/users').then(async ctx => {
         await ctx.redis.set(ctx.req.url, response, 'ex', config.ttl);
     }
 
-    ctx.res.writeHead(200, {'Content-Type': 'application/json'});
+    ctx.res.setHeader('Content-Type', 'application/json');
     ctx.res.end(response);
 
 });
