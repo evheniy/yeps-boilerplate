@@ -10,6 +10,12 @@ const redis = new Redis(config.redis);
 chai.use(chaiHttp);
 let server;
 
+// disable logger error messages
+app.promises.splice(2, 0, async ctx => {
+    ctx.logger.info = text => text;
+    ctx.logger.error = text => text;
+});
+
 describe('YEPS app boilerplate test', () => {
 
     beforeEach(() => {
