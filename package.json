@@ -1,16 +1,16 @@
 {
   "name": "yeps-boilerplate",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "YEPS boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "node --harmony ./bin/www",
+    "start": "node ./bin/www",
     "lint": "./node_modules/.bin/npm-run-all --parallel lint:**",
     "lint:js": "./node_modules/.bin/eslint index.js tests",
     "test": "./node_modules/.bin/npm-run-all --parallel test:**",
     "test:security": "./node_modules/.bin/nsp check",
-    "test:code": "node --harmony ./node_modules/mocha/bin/_mocha tests --recursive",
-    "test:coverage": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- tests --recursive",
+    "test:code": "node ./node_modules/mocha/bin/_mocha tests --recursive",
+    "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- tests --recursive",
     "report": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "clear": "./node_modules/.bin/rimraf coverage",
     "precommit": "npm run lint && npm test",
@@ -44,6 +44,9 @@
   "files": [
     "index.js"
   ],
+  "engines": {
+    "node": ">=7.6.0"
+  },
   "dependencies": {
     "body-parser": "^1.16.1",
     "compression": "^1.6.2",
@@ -52,12 +55,12 @@
     "isomorphic-fetch": "^2.2.1",
     "serve-favicon": "^2.4.0",
     "serve-static": "^1.11.2",
-    "yeps": "*",
-    "yeps-error": "*",
-    "yeps-express-wrapper": "*",
-    "yeps-logger": "*",
-    "yeps-redis": "*",
-    "yeps-router": "*"
+    "yeps": "^1.0.0",
+    "yeps-error": "^1.0.0",
+    "yeps-express-wrapper": "^1.0.0",
+    "yeps-logger": "^1.0.0",
+    "yeps-redis": "^1.0.0",
+    "yeps-router": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -72,7 +75,7 @@
     "mocha-lcov-reporter": "^1.2.0",
     "npm-run-all": "^4.0.1",
     "nsp": "^2.6.2",
-    "promise-pause-timeout": "0.0.1",
+    "promise-pause-timeout": "^1.0.0",
     "rimraf": "^2.5.4",
     "sinon": "^1.17.7"
   }
