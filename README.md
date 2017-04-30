@@ -15,25 +15,6 @@
 [![GitHub issues](https://img.shields.io/github/issues/evheniy/yeps-boilerplate.svg)](https://github.com/evheniy/yeps-boilerplate/issues)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/evheniy/yeps-boilerplate.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
 
-## Packages
-
-* [yeps](https://github.com/evheniy/yeps) - YEPS
-* [yeps-promisify](https://github.com/evheniy/yeps-promisify) - YEPS kernel
-* [yeps-router](https://github.com/evheniy/yeps-router) - YEPS promise based router
-* [yeps-error](https://github.com/evheniy/yeps-error) - YEPS 404/500 error handler
-* [yeps-redis](https://github.com/evheniy/yeps-redis) - YEPS promise based redis client
-* [yeps-logger](https://github.com/evheniy/yeps-logger) - YEPS async logger
-* [yeps-express-wrapper](https://github.com/evheniy/yeps-express-wrapper) - YEPS express wrapper
-* [config](https://github.com/lorenwest/node-config) - node.js config
-* [winston](https://github.com/winstonjs/winston) - logger
-* [ioredis](https://github.com/luin/ioredis) - promise based redis client
-* [body-parser](https://github.com/expressjs/body-parser) - Node.js body parsing middleware
-* [serve-favicon](https://github.com/expressjs/serve-favicon) - favicon serving middleware
-* [serve-static](https://github.com/expressjs/serve-static) - Serve static files
-* [cors](https://www.npmjs.com/package/cors) - middleware for dynamically or statically enabling CORS
-* [helmet](https://github.com/helmetjs/helmet) - Helmet helps you secure your apps by setting various HTTP headers
-* [compression](https://github.com/expressjs/compression) - Node.js compression middleware
-
 
 ## How to install
 
@@ -48,3 +29,5 @@
 ## How to test
 
     npm t
+
+#### [YEPS documentation](http://yeps.info/)

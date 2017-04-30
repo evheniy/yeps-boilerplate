@@ -1,34 +1,37 @@
-const path = require('path');
+const { resolve } = require('path');
 const App = require('yeps');
 const Router = require('yeps-router');
 const redis = require('yeps-redis');
 const error = require('yeps-error');
 const logger = require('yeps-logger');
+const serveStatic = require('yeps-static');
+const bodyParser = require('yeps-bodyparser');
+const helmet = require('yeps-helmet');
+const cors = require('yeps-cors');
 const parser = require('url');
 const config = require('config');
 require('isomorphic-fetch');
 const wrapper = require('yeps-express-wrapper');
-const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
-const serveStatic = require('serve-static');
 const compression = require('compression');
-const helmet = require('helmet');
-const cors = require('cors');
+
 
 const app = module.exports = new App();
 const router = new Router();
 
 app.all([
-    wrapper(favicon(path.join(__dirname, 'public', 'favicon.ico'))),
-    wrapper(serveStatic(path.join(__dirname, 'public', 'files'))),
+    wrapper(favicon(resolve(__dirname, 'public', 'favicon.ico'))),
+    serveStatic({
+        root: resolve(__dirname, 'public', 'files'),
+    })
 ]).all([
     redis(),
     error(),
     logger(),
-    wrapper(bodyParser.json()),
+    bodyParser(),
     wrapper(compression()),
-    wrapper(helmet()),
-    wrapper(cors()),
+    helmet(),
+    cors(),
 ]);
 
 router.get('/users').then(async ctx => {

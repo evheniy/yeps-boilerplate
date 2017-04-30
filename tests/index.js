@@ -1,25 +1,28 @@
 const app = require('..');
-const http = require('http');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const expect = chai.expect;
 const config = require('config');
 const Redis = require('ioredis');
 const redis = new Redis(config.redis);
+const yeps = require('yeps-server');
+const logger = require('yeps-logger/logger');
 
 chai.use(chaiHttp);
 let server;
 
 // disable logger error messages
-app.promises.splice(2, 0, async ctx => {
-    ctx.logger.info = text => text;
-    ctx.logger.error = text => text;
-});
+logger.info = text => text;
+logger.error = text => text;
 
 describe('YEPS app boilerplate test', () => {
 
     beforeEach(() => {
-        server = http.createServer(app.resolve());
+        server = yeps.createHttpServer(app);
+    });
+
+    afterEach(() => {
+        server.close();
     });
 
     it('should test users', async () => {
@@ -27,6 +30,7 @@ describe('YEPS app boilerplate test', () => {
 
         await chai.request(server)
             .get('/users')
+            .set('Content-Type', 'application/json')
             .send()
             .then(res => {
                 expect(res).to.have.status(200);
@@ -50,6 +54,7 @@ describe('YEPS app boilerplate test', () => {
 
         await chai.request(server)
             .get('/categories')
+            .set('Content-Type', 'application/json')
             .send()
             .then(res => {
                 expect(res).to.have.status(200);
@@ -88,6 +93,7 @@ describe('YEPS app boilerplate test', () => {
 
         await chai.request(server)
             .get('/')
+            .set('Content-Type', 'application/json')
             .query({
                 users: 'users',
                 categories: 'categories'
@@ -135,6 +141,7 @@ describe('YEPS app boilerplate test', () => {
 
         await chai.request(server)
             .get('/')
+            .set('Content-Type', 'application/json')
             .query({
                 users: 'users',
                 categories: 'categories'
@@ -210,6 +217,7 @@ describe('YEPS app boilerplate test', () => {
 
         await chai.request(server)
             .get('/')
+            .set('Content-Type', 'application/json')
             .query({
                 users: 'users',
                 category: 'category'
